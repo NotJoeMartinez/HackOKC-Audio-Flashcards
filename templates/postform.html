@@ -1,0 +1,77 @@
+{% extends "layout.html" %}
+{% block content %}
+<div class="form-group">
+    <form action="" method="POST">
+
+        <table>
+            <thead>
+                <tr>
+                    <th>Name of Lecture</th>
+                </tr>
+            </thead>
+            
+            <tbody>
+                {{ form.hidden_tag() }}
+                <tr>
+                    <td>
+                        {{ form.postTitle.label }}
+                    </td>
+                    <td>
+                        {{ form.postTitle }} 
+                        {% for error in form.postTitle.errors %}
+                            <span style="color: red;">[{{ error }}]</span>
+                        {% endfor %}
+                    </td>
+                    
+                </tr>
+                <tr>
+                    
+                    <td>
+                        {{ form.postBody.label }}
+                    </td>
+                    <br>
+                    <td>
+                        {{ form.postBody }}
+                        {% for error in form.postBody.errors %}
+                            <span style="color: red;">[{{ error }}]</span>
+                        {% endfor %}
+                    </td>
+                </tr>
+            </tbody>
+            
+            <tfoot>
+                <tr>
+                    <th>
+                        {{ form.submit() }}
+                    </th>
+                </tr>
+            </tfoot>
+        
+        </table>
+    </form>
+    <!-- form div -->
+</div> 
+
+
+<table class="table" id="table_id">
+<thead>
+    <tr>
+        <th scope="#">Id</th>
+        <th scope="#">Lecture Title</th>
+        <th scope="#">Lecture Keywords</th>
+        <th scope="#">Action</th>
+    </tr>
+</thead>
+{% for postform in postforms %}
+    <tr>
+        <td>{{postform.id}}</td>
+        <td>{{postform.postTitle}}</td>
+        <td>{{postform.postBody}}</td>
+        <td><a href="{{ url_for('updatePostform', postform_id=postform.id) }}">update</a></td>
+        <td><a href="{{ url_for('deletePostform', postform_id=postform.id) }}">delete</a></td>
+    </tr>
+{% endfor %}
+</table>
+
+
+{% endblock content %}

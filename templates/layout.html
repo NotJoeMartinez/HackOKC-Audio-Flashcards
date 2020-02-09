@@ -1,0 +1,27 @@
+
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>{{ Postform }}</title>
+    </head>
+    <body>
+    {% include 'parts/_nav.html' %}
+    <div class="col-md-12 p-0  h-md-100">
+        <div class="text-dark d-md-flex align-items-center h-100 p-5 text-center justify-content-center">
+            <div class="logoarea pt-5 pb-5">
+
+        {% with messages = get_flashed_messages() %}
+            {% if messages %}
+                <ul class="flashes">
+                    {% for message in messages %}
+                        <li>{{ message }}</li>
+                    {% endfor %}
+                </ul>
+            {% endif %}
+        {% endwith %}
+        {% block content %} {% endblock content %}
+        </div>
+        </div>
+    </div>
+    </body>
+</html>
